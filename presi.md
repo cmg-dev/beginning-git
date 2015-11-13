@@ -91,7 +91,6 @@ Eine Datei hat einen der folgenden Zustände:
 
 ]
 
-
 ---
 class:
 background-image: url(img/03_dirs.png)
@@ -280,6 +279,17 @@ class:
 background-image: url(img/05_2_example1.png)
 
 .right-column[
+### Arbeiten -> Commiten -> repeat.
+
+```bash
+git-dojo 𝚿 git commit -m"Mein 2. commit"                    (b:master∂)
+[master ps2pduu] Mein 2. commit
+ 1 file changed, 1 insertions(+)
+
+git-dojo 𝚿 git commit -m"Commit 3 :-)"                      (b:master∂)
+[master ms226a5] Commit 3 :-)
+ 1 file changed, 1 insertions(+)
+```
 ]
 
 ---
@@ -287,6 +297,40 @@ class:
 background-image: url(img/05_3_example1.png)
 
 .right-column[
+### Woraus besteht ein *commit*?
+
+Ein *commit* speichert im Wesentlichen die Informationen
+
+* über den Autor
+* den Zeitpunkt
+* die Nachricht
+* seinen *parent*
+
+]
+
+---
+class:
+background-image: url(img/00_commit_internals.png)
+
+.right-column[
+### Wo sind die Dateien?
+
+Jeder *commit* hat eine *tree*. Genauer: jeder *commit* zeigt auf einen *tree*.
+
+Jeder *tree* zeigt wiederum auf *blobs*, Dateien unspezifizierten Formats.
+
+*blobs* werden in dem Ordner ```.git/objects/``` abgelegt
+
+```bash
+git-dojo 𝚿 ls -al .git/objects                                                 (b:master)
+total 0
+drwxr-xr-x  16 cmg  staff  544 13 Nov 11:17 .
+drwxr-xr-x  14 cmg  staff  476 13 Nov 15:58 ..
+drwxr-xr-x   4 cmg  staff  136 13 Nov 11:17 bh
+drwxr-xr-x   3 cmg  staff  102 12 Nov 23:29 rr
+drwxr-xr-x   3 cmg  staff  102 13 Nov 11:15 pl
+
+```
 ]
 
 ---
@@ -294,7 +338,7 @@ class:
 background-image: url(img/05_4_example1.png)
 
 .right-column[
-### Wie weiß git in welchem Branch es sich befindet?
+### Woher weiß git in welchem Branch es sich befindet?
 
 git speichert eine Referenz (Pfad zum Branch) in **HEAD** ab.
 
@@ -310,6 +354,100 @@ git-dojo 𝚿 cat .git/branch                              (b:master)
 class: center, middle
 background-image: url(background.png)
 ## branches
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Was sind branches?
+
+Analog zu anderen VCS hat git ein 'Branching Modell'.
+
+Man kann mehrere Zweige eines Repositories erzeugen.
+
+Branches haben in git eine besondere Stellung.
+
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Was sind branches?
+
+Es gibt zwei Arten von branches:
+
+1. Lokale
+  
+  Zeigen auf einen commit im lokalen Repository.
+
+2. Entfernte
+
+  Alle anderen Repositories; Allerdings meistens **```origin```**
+
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Arbeiten mit lokalen branches
+]
+
+---
+class: center, middle
+background-image: url(background.png)
+## Entfernte branches
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### branch erzeugen
+### branches anzeigen
+]
+
+---
+class:
+background-image: url(img/06_branching.png)
+
+.right-column[
+### branch erzeugen
+
+```bash
+git-dojo 𝚿 git branch Bug1                           (b:master)
+```
+
+### branches anzeigen
+
+```bash
+git-dojo 𝚿 git branch -a                              (b:master)
+  Bug1
+  *master
+```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### *checkout* Lokalen branch
+### *checkout* Entfernten branch
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Lokalen Branch löschen
+### Entfernten Branch löschen
+]
 
 ---
 class: center, middle
@@ -333,6 +471,54 @@ Aus großer Macht folgt große Verantwortung!
 class: center, middle
 background-image: url(background.png)
 ## merging
+
+---
+class:
+background-image: url(img/07_merging_FF.png)
+
+.right-column[
+### merge mit Fast Forward
+
+Branch **master** auschecken:
+
+```bash
+git-dojo 𝚿 git checkout master                           (b:Bug1)
+Switched to branch 'master'
+```
+
+Merge mit Standardverhalten:
+
+
+```bash
+git-dojo 𝚿 git merge                                   (b:master)
+
+```
+]
+
+---
+class:
+background-image: url(img/07_merging_nFF.png)
+
+.right-column[
+### merge non Fast Forward
+
+Branch **master** auschecken:
+
+```bash
+git-dojo 𝚿 git checkout master                           (b:Bug1)
+Switched to branch 'master'
+```
+
+Merge mit option ```--no-ff```:
+
+
+```bash
+git-dojo 𝚿 git merge --no-ff                           (b:master)
+
+```
+
+Man erhällt einen Merge commit, der auf zwei *parents* zeigt.
+]
 
 ---
 class:
@@ -479,7 +665,6 @@ index 32d0279,9f985ab..0000000
 Eine Lösung des Problems führt über einen Handelsüblichen Texteditor.
 ]
 
-
 ---
 class:
 background-image: url(background.png)
@@ -489,12 +674,21 @@ background-image: url(background.png)
 ### Lösung
 
 ```bash
-git-dojo2 𝚿 vim TestA.txt                                                (b:master∂)
+git-dojo2 𝚿 cat TestA.txt                                                (b:master∂)
+Das ist ein Test...
+<<<<<<< HEAD
+Merge me
+=======
+Merge me...
+>>>>>>> 54a467267033f03aaf03be4cad8e11af9b6dd980
 ```
 
+Mit einem Editor den Konflikt lösen.
 Löschen der Diff-Kommentare, die Änderungen, die wir behalten wollen aber stehen lassen ;)
 
 ```bash
+git-dojo2 𝚿 vim TestA.txt                                                (b:master∂)
+
 git-dojo2 𝚿 cat TestA.txt                                                (b:master∂)
 Das ist ein Test...
 Merge me
@@ -521,17 +715,11 @@ Merge branch 'master' of github.com:cmg-dev/git-dojo
 
 # Conflicts:
 #	TestA.txt
-#
-# It looks like you may be committing a merge.
-# If this is not correct, please remove the file
-#	.git/MERGE_HEAD
-# and try again.
 ```
 ```bash
 git-dojo2 𝚿 git commit                                                    (b:master)
 [master f86d4f6] Merge branch 'master' of github.com:cmg-dev/git-dojo
 ```
-
 ]
 
 ---
@@ -554,6 +742,32 @@ Total 4 (delta 0), reused 0 (delta 0)
 To git@github.com:cmg-dev/git-dojo
    54a4672..f86d4f6  master -> master
 ```
+]
+
+
+---
+class: center, middle
+background-image: url(background.png)
+
+## Best Practice
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### *stash* benutzen
+### *commits* sauber halten
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Zuerst *pullen*/ *mergen*
+
+### Anschließend *commit*
 ]
 
 ---
