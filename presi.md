@@ -26,7 +26,7 @@ background-image: url(background.png)
 
 ### Woher kommt git?
 
-* Urpsrung in Linux Kernel-Community
+* Ursprung in Linux Kernel-Community
 * Von Linus Torvalds entwickelt
 * Eingesetzt für die Kernel Entwicklung
 * Weitere OpenSource Projekte folgen
@@ -65,11 +65,11 @@ background-image: url(background.png)
 * git denkt in **Snapshots**
 * Andere in **Differences**
 
+### Daraus folgt
 
 * (fast) jede Operation wirkt lokal
 
-
-* eine Prüfsumme wird jedes mal gebildet
+* eine Prüfsumme wird für jedes Objekt gebildet
 * git hat eine intrinsische, rückwärtsgerichtete Integritätsprüfung!
 * schwierig Daten zu manipulieren
 ]
@@ -81,7 +81,7 @@ background-image: url(img/02_file_states.png)
 .right-column[
 ### Drei Zustände, drei Sektionen
 
-Eine Datei kann entweder:
+Eine Datei hat einen der folgenden Zustände:
 
 1. committed -> Sicher in Datenbank
 
@@ -89,7 +89,6 @@ Eine Datei kann entweder:
 
 3. staged -> Bereit für *commit*
 
-sein.
 ]
 
 
@@ -120,13 +119,11 @@ background-image: url(img/04_workflow.png)
 .right-column[
 ### Workflow
 
-Zum Schluss betrachten wir den typischen, alltäglichen Workflow
+1. Arbeiten an Dateien im *Working Directory*
 
-1. Arbeiten an Datein im *Working Directory*
+2. *Stagen* eines Snapshots der Dateien zur *Staging Area*
 
-2. *Stagen* eines Snapshots der Datein zur *Staging Area*
-
-3. Man führt einen *commit* durch, der die Datein in der *Staging Area* als Snapshot im git-Verzeichnis speichert
+3. Man führt einen *commit* durch, der die Dateien in der *Staging Area* als Snapshot im git-Verzeichnis speichert
 ]
 ---
 class:
@@ -180,7 +177,7 @@ background-image: url(img/s0_start.png)
 .right-column[
 ## Anfang
 
-Blick ins Repo
+Blick in das Repository
 
 ```bash
   » ls -al
@@ -195,7 +192,8 @@ Blick ins Repo
         HEAD
 ```
 
-Es exisitert alles im Ordner *.git*
+Alles spielt sich im *.git*-Ordner ab.
+
 ]
 
 ---
@@ -204,20 +202,20 @@ background-image: url(background.png)
 
 .example_page[
 
-Ein paar Datein Anlegen
+Ein paar Dateien Anlegen
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
 TestA.txt TestB.txt TestC.txt
 ```
 
-Commit vorbeteiten: Zur *Staging Area* hinzufügen
+Commit vorbereiten: Zur *Staging Area* hinzufügen
 
 ```bash
 git-dojo 𝚿 git add                                                   (b:master∂)
 ```
 
-Commit schreiben und Datein in die Obhut von git geben
+Commit schreiben und Dateien von git verwalten lassen
 
 ```bash
 git-dojo 𝚿 git commit -m "Sinnvolle Nachricht"                        (b:master)
@@ -235,7 +233,7 @@ background-image: url(background.png)
 
 .example_page[
 
-Ein paar Datein Anlegen
+Ein paar Dateien Anlegen
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
@@ -252,7 +250,7 @@ background-image: url(img/05_example1.png)
 
 **Explizit**
 
-* drei Datein angelegt
+* drei Dateien angelegt
 
 * diese *gestaged*
 
@@ -274,6 +272,7 @@ class:
 background-image: url(img/05_1_example1.png)
 
 .right-column[
+### Was enthält der master
 ]
 
 ---
@@ -295,9 +294,9 @@ class:
 background-image: url(img/05_4_example1.png)
 
 .right-column[
-### Wie weiß git in wechem Branch es sich befindet?
+### Wie weiß git in welchem Branch es sich befindet?
 
-Es speichtet eine Referenz in **HEAD** ab.
+git speichert eine Referenz (Pfad zum Branch) in **HEAD** ab.
 
 Zu finden unter:
 
