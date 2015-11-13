@@ -124,7 +124,7 @@ Zum Schluss betrachten wir den typischen, alltäglichen Workflow
 
 1. Arbeiten an Datein im *Working Directory*
 
-2. *Stagen* eines Snapshots der Datein zur *Staging Area* 
+2. *Stagen* eines Snapshots der Datein zur *Staging Area*
 
 3. Man führt einen *commit* durch, der die Datein in der *Staging Area* als Snapshot im git-Verzeichnis speichert
 ]
@@ -242,6 +242,77 @@ git-dojo 𝚿 ls                                                        (b:maste
 TestA.txt TestB.txt TestC.txt
 ```
 ]
+
+---
+class:
+background-image: url(img/05_example1.png)
+
+.right-column[
+### Was haben wir bisher getan?
+
+**Explizit**
+
+* drei Datein angelegt
+
+* diese *gestaged*
+
+* einen *commit* erstellt
+
+**Implizit**
+
+* einen Branch erstellt
+
+```bash
+git-dojo 𝚿 git branch                                    (b:master)
+  master
+```
+
+]
+
+---
+class:
+background-image: url(img/05_1_example1.png)
+
+.right-column[
+]
+
+---
+class:
+background-image: url(img/05_2_example1.png)
+
+.right-column[
+]
+
+---
+class:
+background-image: url(img/05_3_example1.png)
+
+.right-column[
+]
+
+---
+class:
+background-image: url(img/05_4_example1.png)
+
+.right-column[
+### Wie weiß git in wechem Branch es sich befindet?
+
+Es speichtet eine Referenz in **HEAD** ab.
+
+Zu finden unter:
+
+```bash
+git-dojo 𝚿 cat .git/branch                              (b:master)
+  ref: refs/heads/master
+```
+]
+
+---
+## branches
+---
+## merging
+---
+##
 ---
 class: center, middle
 background-image: url(background.png)
