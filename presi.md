@@ -391,28 +391,6 @@ Es gibt zwei Arten von branches:
 
 ---
 class:
-background-image: url(background.png)
-
-.right-column[
-### Arbeiten mit lokalen branches
-]
-
----
-class: center, middle
-background-image: url(background.png)
-## Entfernte branches
-
----
-class:
-background-image: url(background.png)
-
-.right-column[
-### branch erzeugen
-### branches anzeigen
-]
-
----
-class:
 background-image: url(img/06_branching.png)
 
 .right-column[
@@ -425,7 +403,7 @@ git-dojo 𝚿 git branch Bug1                           (b:master)
 ### branches anzeigen
 
 ```bash
-git-dojo 𝚿 git branch -a                              (b:master)
+git-dojo 𝚿 git branch                                (b:master)
   Bug1
   *master
 ```
@@ -433,11 +411,179 @@ git-dojo 𝚿 git branch -a                              (b:master)
 
 ---
 class:
+background-image: url(img/06_1_branching.png)
+
+.right-column[
+
+### Arbeiten mit lokalen branches
+
+**Branch auschecken**
+``` bash
+git-dojo 𝚿 git checkout Bug1                          (b:master)
+Switched to branch 'Bug1'
+```
+
+**commit** der Arbeit
+
+```bash
+git-dojo 𝚿 git commit -m"Bug identifiziert"             (b:Bug1∂)
+[Bug1 13rrt37] Ein commit in Bug1
+ 1 file changed, 2 insertions(+)
+ create mode 100644 TestA.clone.txt
+
+git-dojo 𝚿 git commit -m"Bug gefixt"                    (b:Bug1∂)
+[Bug1 pa2d216] Ein commit in Bug1
+ 1 file changed, 3 insertions(+)
+ create mode 100644 TestB.clone.txt
+```
+]
+
+---
+class:
+background-image: url(img/06_2_branching.png)
+
+.right-column[
+
+### Arbeiten mit lokalen branches
+
+**Arbeit finalisieren**
+
+Jetzt ist ein guter Zeitpunkt gekommen um automatisierte Tests durchlaufen zu lassen.
+
+An diesem Punkt können wir auch entscheiden, die Arbeit mit anderen Entwicklern zu teilen.
+
+Zuerst aber lernen wir, wie wir zwischen Branches wechseln.
+]
+
+---
+class:
+background-image: url(img/06_4_branching.png)
+
+.right-column[
+
+### Von Bug1 nach master wechseln
+
+```bash
+git-dojo 𝚿 git checkout master                            (b:Bug1)
+Switched to branch 'master'
+```
+
+**HEAD** zeigt nun auf **master**
+
+]
+
+---
+class:
+background-image: url(img/06_3_branching.png)
+
+.right-column[
+
+### Von master nach Bug1 wechseln
+
+```bash
+git-dojo 𝚿 git checkout Bug1                            (b:master)
+Switched to branch 'Bug1'
+```
+
+Der nächste Schritt ist das Zusammenführen der Branches
+
+]
+
+---
+class:
+background-image: url(img/07_merging_FF.png)
+
+.right-column[
+
+### Zusammenführen von master und Bug1
+
+```bash
+git-dojo 𝚿 git checkout master                            (b:Bug1)
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+git-dojo 𝚿 git merge Bug1                               (b:master)
+Merge made by the 'recursive' strategy.
+ TestA.clone.txt | 2 ++
+ TestB.clone.txt | 3 +++
+ 2 files changed, 5 insertions(+)
+ create mode 100644 TestA.clone.txt
+ create mode 100644 TestB.clone.txt
+```
+]
+
+---
+class: center, middle
+background-image: url(background.png)
+## Entfernte branches
+
+---
+class:
+background-image: url(img/06_branching_remote.png)
+
+.right-column[
+
+### remote branches anzeigen
+
+```bash
+git-dojo 𝚿 git branch -r                              (b:master)
+  origin/master
+```
+
+**Lokalen Branch einem *remote* bekannt machen**
+
+```bash
+git-dojo 𝚿 git checkout Bug1                          (b:master)
+Switched to branch 'Bug1'
+
+git-dojo 𝚿 git push -u origin Bug1                      (b:Bug1)
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:cmg-dev/git-dojo
+ *[new branch]      Bug1 -> Bug1
+```
+]
+
+---
+class:
+background-image: url(img/06_branching_remote.png)
+
+.right-column[
+
+### remote tracking branches
+
+Branches mit sog. *Upstream Tracking* haben eine direkte Beziehung mit einem entfernten Branch.
+
+Wenn in einem *tracking*-Branch ein *pull* oder *push* ausgeführt weiß git sofort von wo es die Daten holen soll.
+
+```bash
+git-dojo 𝚿 cat .git/config                                                       (b:Bug1)
+(...)
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+[branch "Bug1"]
+        remote = origin
+        merge = refs/heads/Bug1
+(...)
+```
+]
+---
+class:
 background-image: url(background.png)
 
 .right-column[
-### *checkout* Lokalen branch
-### *checkout* Entfernten branch
+### branch erzeugen
+### branches anzeigen
+]
+
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### *checkout* lokalen tracking branch
+### *checkout* entfernten branch
 ]
 
 ---
@@ -446,7 +592,18 @@ background-image: url(background.png)
 
 .right-column[
 ### Lokalen Branch löschen
+
+```bash
+git-dojo 𝚿 git branch -D Bug1                           (b:master)
+Deleted branch Bug1 (was aec1cab).
+```
 ### Entfernten Branch löschen
+
+```bash
+git-dojo 𝚿 git push origin :Bug1                        (b:master)
+To git@github.com:cmg-dev/git-dojo
+ - [deleted]         Bug1
+```
 ]
 
 ---
@@ -456,21 +613,54 @@ background-image: url(background.png)
 
 ---
 class:
-background-image: url(background.png)
+background-image: url(img/07_collaboration.png)
 .right-column[
-### Fazit
+### Alice und Bob
 
-Die Möglichkeiten zur Zusammenarbeit bei git sind vielfältig.
+Zwei Entwickler arbeiten an einem gemeinsamen Projekt.
 
-git stellt keine Ansprüche an die Projektstruktur.
+**Alice** hat sich um den Bugfix gekümmert
 
-Aus großer Macht folgt große Verantwortung!
+**Bob** hat eine GUI implementiert
+
+]
+---
+class:
+background-image: url(img/07_1_collaboration.png)
+.right-column[
+### Bob führt einen *pull* aus
+
+```bash
+git-dojo 𝚿 git pull git@github.com:alice/git-dojo.git   (b:master)
+```
+
+Und erhält die Änderungen, die Alice gemacht hat.
+
 ]
 
 ---
 class: center, middle
 background-image: url(background.png)
 ## merging
+
+---
+class:
+background-image: url(img/06_2_branching.png)
+
+.right-column[
+### Kurzer Rückblick
+
+Für das Zusammenführen haben wir zwei Möglichkeiten:
+
+1. Fast Forward
+
+  Merge ohne einen *merge commit*
+
+2. non Fast Forward
+
+  Mit einem *merge commit*
+
+]
 
 ---
 class:
@@ -490,7 +680,7 @@ Merge mit Standardverhalten:
 
 
 ```bash
-git-dojo 𝚿 git merge                                   (b:master)
+git-dojo 𝚿 git merge Bug1                              (b:master)
 
 ```
 ]
@@ -513,7 +703,7 @@ Merge mit option ```--no-ff```:
 
 
 ```bash
-git-dojo 𝚿 git merge --no-ff                           (b:master)
+git-dojo 𝚿 git merge Bug1 --no-ff                      (b:master)
 
 ```
 
