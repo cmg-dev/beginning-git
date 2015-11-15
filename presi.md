@@ -1,4 +1,4 @@
-class: middle, center
+﻿class: middle, center
 background-image: url(background-intro.png)
 
 # Beginning git
@@ -88,7 +88,7 @@ background-image: url(background.png)
 
 * eine Prüfsumme wird für jedes Objekt gebildet
 * git hat eine intrinsische, rückwärtsgerichtete Integritätsprüfung!
-* das macht schwierig Daten zu manipulieren
+* das macht es schwierig Daten zu manipulieren
 ]
 
 ---
@@ -228,7 +228,7 @@ background-image: url(img/s0_start.png)
   » git init .
 ```
 
-Macht einen leeren Ordner zum Repository.
+Erstellt einen leeren Ordner zum Repository.
 
 ]
 
@@ -293,7 +293,7 @@ background-image: url(background.png)
 
 .example_page[
 
-**1. Ein paar Dateien Anlegen**
+**1. Ein paar Dateien anlegen**
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
@@ -307,7 +307,7 @@ background-image: url(background.png)
 
 .example_page[
 
-**1. Ein paar Dateien Anlegen**
+**1. Ein paar Dateien anlegen**
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
@@ -517,7 +517,7 @@ Jeder *commit* hat eine *tree*. Genauer: jeder *commit* zeigt auf einen *tree*.
 
 Jeder *tree* zeigt wiederum auf *blobs*.
 
-*blobs* werden in dem Ordner ```.git/objects/``` abgelegt
+*blobs* werden in dem Ordner ```.git/objects/``` abgelegt.
 
 ```bash
 git-dojo 𝚿 ls -al .git/objects                                                 (b:master)
@@ -538,7 +538,7 @@ background-image: url(img/00_1_commit-internals.png)
 .right-column[
 ### Wo sind die Dateien?
 
-So sieht es bei jeden beliebigen Commit aus.
+So sieht es bei jedem beliebigen Commit aus.
 
 Aus Gründen der Übersicht, werden die *tree*-Objekte nicht dargestellt.
 ]
@@ -735,7 +735,7 @@ background-image: url(img/09_1_remote_branch.png)
 
 .right-column[
 
-### Lokalen Branch *puschen*
+### Lokalen Branch *pushen*
 **Lokalen Branch einem *remote* bekannt machen**
 
 ```bash
@@ -759,7 +759,7 @@ background-image: url(img/09_1_remote_branch.png)
 
 Branches mit sog. *Upstream Tracking* haben eine direkte Beziehung mit einem entfernten Branch.
 
-Wenn in einem *tracking*-Branch ein *pull* oder *push* ausgeführt weiß git sofort von wo es die Daten holen soll.
+Wenn in einem *tracking*-Branch ein *pull* oder *push* ausgeführt wird, weiß git sofort von wo es die Daten holen soll.
 
 ```bash
 git-dojo 𝚿 cat .git/config                                (b:Bug1)
@@ -780,7 +780,7 @@ background-image: url(background.png)
 
 .right-column[
 
-### *checkout* entfernten branch
+### *checkout* entfernten Branch
 
 ```bash
 git-dojo 𝚿 git checkout -b Bug1 origin/Bug1             (b:master)
@@ -788,7 +788,7 @@ Switched to branch 'Bug1'
 Your branch is up-to-date with 'origin/Bug1'.
 ```
 
-### *checkout* lokalen tracking branch
+### *checkout* lokalen tracking Branch
 
 ```bash
 git-dojo 𝚿 git checkout Bug1                            (b:master)
@@ -1108,7 +1108,7 @@ background-image: url(background.png)
 
 **Alice**
 
-*commit* und *push* mit seine Änderungen
+*commit* und *push* mit ihren Änderungen
 
 ```bash
 git-dojo 𝚿 git add TestA.txt                                             (b:master∂)
@@ -1223,7 +1223,7 @@ index 32d0279,9f985ab..0000000
 ++>>>>>>> 54a467267033f03aaf03be4cad8e11af9b6dd980
 ```
 
-Eine Lösung des Problems führt über einen Handelsüblichen Texteditor.
+Eine Lösung des Problems führt über einen handelsüblichen Texteditor.
 ]
 
 ---
@@ -1326,12 +1326,12 @@ background-image: url(background.png)
   » ssh-keygen -t rsa
 ```
 
-Bei verwenden der git Befehle in folgender Form:
+Bei Verwendung der git Befehle in folgender Form:
 ```bash
   » git clone git@xyz.com:REPO.git
 ```
 
-Wird automatisch ssh-Verschlüsselung eingesetzt um den Transport ab zu sichern
+wird automatisch ssh-Verschlüsselung eingesetzt um den Transport zu sichern
 ]
 
 ---
@@ -1537,7 +1537,7 @@ background-image: url(background.png)
 .example_page[
 ### Zuerst *pullen*/ *mergen*
 
-Wenn man an einem branch arbeitet, in dem andere Entwckler ihre Arbeit commiten, sollte man vor einem *commit* die Änderungen holen.
+Wenn man an einem Branch arbeitet, in dem andere Entwickler ihre Arbeit commiten, sollte man vor einem *commit* die Änderungen holen.
 
 ### Anschließend *commit*
 
@@ -1577,7 +1577,7 @@ background-image: url(background.png)
 
 Restrukturierung der *commit*-Historie.
 
-Tipp: **Finger Weg!**
+Tipp: **Finger weg!**
 ]
 
 ---
@@ -1602,7 +1602,7 @@ class:
 background-image: url(background.png)
 
 .example_page[
-### .gitignore Konfigurieren
+### .gitignore konfigurieren
 
 Innerhalb eines Repositories kann man eine Datei mit einer speziellen Funktion anlegen.
 Die *.gitignore*-Datei bestimmt welche Dateien von dem Repository aufgenommen werden dürfen.
@@ -1631,7 +1631,7 @@ class:
 background-image: url(background.png)
 
 .example_page[
-### .gitignore Konfigurieren
+### .gitignore konfigurieren
 
 Man kann auch Wildcards verwenden, sowie verschiedene Schreibweisen eines Ordners angeben:
 
