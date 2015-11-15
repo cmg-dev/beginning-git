@@ -38,7 +38,7 @@ background-image: url(background.png)
 ]
 
 ---
-class: top, center
+class: middle, center
 background-image: url(background.png)
 
 ### Was kann git?
@@ -176,9 +176,53 @@ background-image: url(background.png)
 ## Der Einstieg...
 
 ---
+class:
+background-image: url(background.png)
+
+.example_page[
+### Die großen 4...
+
+**1. Dateien *stagen* **
+
+```bash
+  » git add <Datei_1> <...> <Datei_N>
+```
+
+**2. *commit* erstellen **
+
+```bash
+  » git commit -m "Nachricht"
+```
+
+**3. Änderungen holen**
+
+```bash
+  » git pull <source_repository>
+```
+
+**4. Änderungen schreiben**
+
+```bash
+  » git push origin <branch>
+```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+### Cheat Sheet
+
+Für die tägliche Arbeit kann ein [git cheat sheet](http://www.git-tower.com/blog/git-cheat-sheet/) sehr hilfreich sein.
+
+Für eine Übersicht über die sehr umfangreichen Befehle, die git kennt ist so ein Cheat Sheet sehr nützlich.
+]
+
+---
 background-image: url(img/s0_start.png)
 .right-column[
-## Anfang
+### Anfang
 
 ```bash
   » git init .
@@ -191,7 +235,7 @@ Macht einen leeren Ordner zum Repository.
 ---
 background-image: url(img/s0_start.png)
 .right-column[
-## Anfang
+### Anfang
 
 Blick in das Repository
 
@@ -210,6 +254,37 @@ Blick in das Repository
 
 Alles spielt sich im *.git*-Ordner ab.
 
+]
+
+---
+background-image: url(img/s0_start.png)
+
+.right-column[
+
+### Anfang
+
+Eine wichtige Datei ist die *config*-Datei. Alle Einstellungen des Repositories werden hier gespeichert:
+
+```bash
+git-dojo 𝚿 cat .git/config                              (b:master)
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:cmg-dev/git-dojo
+        fetch = +refs/heads/*:refs/remotes/origin/*
+# Diese benötigen wir später
+#[branch "master"]
+#        remote = origin
+#        merge = refs/heads/master
+#[branch "Bug1"]
+#        remote = origin
+#        merge = refs/heads/Bug1
+```
 ]
 
 ---
@@ -458,7 +533,7 @@ drwxr-xr-x   3 cmg  staff  102 13 Nov 11:15 pl
 
 ---
 class:
-background-image: url(img/00_1_commit_internals.png)
+background-image: url(img/00_1_commit-internals.png)
 
 .right-column[
 ### Wo sind die Dateien?
@@ -628,6 +703,8 @@ Merge made by the 'recursive' strategy.
  create mode 100644 TestA.clone.txt
  create mode 100644 TestB.clone.txt
 ```
+
+Dieses Kommando wirkt nur lokal.
 ]
 
 ---
@@ -714,7 +791,7 @@ Your branch is up-to-date with 'origin/Bug1'.
 ### *checkout* lokalen tracking branch
 
 ```bash
-git-dojo 𝚿 git checkout Bug1             (b:master)
+git-dojo 𝚿 git checkout Bug1                            (b:master)
 ```
 ]
 
@@ -787,6 +864,40 @@ Resolving deltas: 100% (1/1), done.
 Checking connectivity... done.
 ```
 ]
+
+---
+class:
+background-image: url(img/08_collaboration.png)
+
+.right-column[
+
+### Alice und Bob
+
+**Was ist passiert?**
+
+```bash
+git-dojo 𝚿 cat .git/config                              (b:master)
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+[remote "origin"]
+        url = git@github.com:cmg-dev/git-dojo
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+```
+]
+
+---
+class: middle, center
+background-image: url(background.png)
+
+## An die Arbeit
 
 ---
 class:
@@ -865,7 +976,7 @@ Fast-forward
 class: top, center
 background-image: url(img/08_4_collaboration.png)
 
-## Alice will Bob's Änderungen haben
+## Alice holt Bob's Änderungen
 
 ---
 class: top, center
@@ -884,9 +995,9 @@ In diesem Abschnitt haben wir:
 
 1. den Standard Workflow zum Arbeiten mit Remote-Repositories verwendet
 
-2. änderungen zum Remote *gepusht*
+2. Änderungen zum Remote *gepusht*
 
-3. änderungen vom Remote *gepullt*
+3. Änderungen vom Remote *gepullt*
 
 Diese Arbeitsweise lässt sich mit vielen Entwicklern gut umsetzen.
 ]
@@ -953,7 +1064,7 @@ git-dojo 𝚿 git checkout master                           (b:Bug1)
 Switched to branch 'master'
 ```
 
-Merge mit option ```--no-ff```:
+Merge mit option ```'--no-ff'```:
 
 
 ```bash
@@ -1231,13 +1342,13 @@ background-image: url(background.png)
 
 ### Sieben Regeln für gute *commit*-Nachrichten
 
-1. Trennen von *subject* und *body*  mit einer leeren Zeile
+1. Trennen von *subject* und *body* mit einer leeren Zeile
 
 1. Auf 50 Zeichen pro Zeile beschränken
 
-1. *Subject*mit Großbuchstaben beginnen
+1. *Subject* mit Großbuchstaben beginnen
 
-1. *Subject*Zeile nicht mit einen Punkt beenden
+1. *Subject* Zeile nicht mit einen Punkt beenden
 
 1. Verwenden des Imperativs in *subject*
 
@@ -1307,8 +1418,49 @@ Further paragraphs come after blank lines.
 class:
 background-image: url(background.png)
 
-.right-column[
+.example_page[
 ### *stash* benutzen
+
+Um Änderungen kurzzeitig aus dem Repository zu nehmen, kann man den *Stash* benutzen.
+
+```bash
+git-dojo 𝚿 git add afile.txt                                              (b:Bug1∂)
+
+git-dojo 𝚿 git stash                                                      (b:Bug1∂)
+Saved working directory and index state WIP on Bug1: aec1cab Merge branch
+'master' into Bug1
+HEAD is now at aec1cab Merge branch 'master' into Bug1
+```
+
+Anzeigen der Objekte im *Stash*:
+
+```bash
+git-dojo 𝚿 git stash list                                                  (b:Bug1)
+stash@{0}: WIP on Bug1: aec1cab Merge branch 'master' into Bug1
+```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### *stash* benutzen
+
+Objekte aus dem Stash holen
+
+```bash
+git-dojo 𝚿 git stash pop                                                   (b:Bug1)
+On branch Bug1
+Your branch is up-to-date with 'origin/Bug1'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   afile.txt
+
+Dropped refs/stash@{0} (8cb9decbdd685302c9514ba73f16235dbbad49a4)
+```
 ]
 
 ---
@@ -1382,7 +1534,7 @@ Nur verwenden wenn man unbedingt muss!
 class:
 background-image: url(background.png)
 
-.right-column[
+.example_page[
 ### Zuerst *pullen*/ *mergen*
 
 Wenn man an einem branch arbeitet, in dem andere Entwckler ihre Arbeit commiten, sollte man vor einem *commit* die Änderungen holen.
@@ -1390,7 +1542,6 @@ Wenn man an einem branch arbeitet, in dem andere Entwckler ihre Arbeit commiten,
 ### Anschließend *commit*
 
 Man erhält einen *merge commit* vor dem *commit* der eigenen Arbeit.
-
 ]
 
 ---
@@ -1407,7 +1558,7 @@ background-image: url(background.png)
 class:
 background-image: url(background.png)
 
-.right-column[
+.example_page[
 ### Delta Kompression
 
 git führt bei der Speicherung der Daten eine [Delta Compression](https://gist.github.com/matthewmccullough/2695758) durch.
@@ -1421,20 +1572,19 @@ Auch 'binäre'-Objekte (z.B. .docx) können so gespeichert werden.
 class:
 background-image: url(background.png)
 
-.right-column[
+.example_page[
 ### git rebase
 
 Restrukturierung der *commit*-Historie.
 
 Tipp: **Finger Weg!**
 ]
----
 
 ---
 class:
 background-image: url(background.png)
 
-.right-column[
+.example_page[
 ### git flow
 Workflow Muster für git mit starker Neigung zu Qualitätssteigerung des Quellcodes.
 
@@ -1448,10 +1598,53 @@ background-image: url(background.png)
 ## Tipps und Tricks
 
 ---
-class: middle
+class:
 background-image: url(background.png)
-### Cheat Sheet
 
-Für die tägliche Arbeit kann ein [git cheat sheet](http://www.git-tower.com/blog/git-cheat-sheet/) sehr hilfreich sein.
+.example_page[
+### .gitignore Konfigurieren
+
+Innerhalb eines Repositories kann man eine Datei mit einer speziellen Funktion anlegen.
+Die *.gitignore*-Datei bestimmt welche Dateien von dem Repository aufgenommen werden dürfen.
+
+Man kann innerhalb der Datei einfache Muster angeben, die ausgeschlossen werden, z.B.:
+
+```bash
+beginning-git 𝚿 cat .gitignore                                             (b:master∂)
+ *.swp
+ *.exe
+ *.orig
+ *.backup
+```
+
+Will man eine Datei dennoch aufnehmen, muss man sie mit:
+
+```bash
+beginning-git 𝚿 git add -f <Datei>                                         (b:master∂)
+```
+
+hinzufügen.
+]
 
 ---
+class:
+background-image: url(background.png)
+
+.example_page[
+### .gitignore Konfigurieren
+
+Man kann auch Wildcards verwenden, sowie verschiedene Schreibweisen eines Ordners angeben:
+
+```bash
+beginning-git 𝚿 cat .gitignore                                             (b:master∂)
+ *.swp
+ *.exe
+ *.orig
+ *.backup
+
+[Bb]in
+[Dd]ebug
+
+ *.png
+```
+]
