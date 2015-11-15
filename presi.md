@@ -637,7 +637,7 @@ background-image: url(background.png)
 
 ---
 class:
-background-image: url(img/06_branching_remote.png)
+background-image: url(img/09_remote_branch.png)
 
 .right-column[
 
@@ -648,6 +648,17 @@ git-dojo 𝚿 git branch -r                              (b:master)
   origin/master
 ```
 
+Alle auf dem remote befindlichen Branches werden so angezeigt.
+]
+
+---
+
+class:
+background-image: url(img/09_1_remote_branch.png)
+
+.right-column[
+
+### Lokalen Branch *puschen*
 **Lokalen Branch einem *remote* bekannt machen**
 
 ```bash
@@ -663,7 +674,7 @@ To git@github.com:cmg-dev/git-dojo
 
 ---
 class:
-background-image: url(img/06_branching_remote.png)
+background-image: url(img/09_1_remote_branch.png)
 
 .right-column[
 
@@ -674,7 +685,7 @@ Branches mit sog. *Upstream Tracking* haben eine direkte Beziehung mit einem ent
 Wenn in einem *tracking*-Branch ein *pull* oder *push* ausgeführt weiß git sofort von wo es die Daten holen soll.
 
 ```bash
-git-dojo 𝚿 cat .git/config                                                       (b:Bug1)
+git-dojo 𝚿 cat .git/config                                (b:Bug1)
 (...)
 [branch "master"]
         remote = origin
@@ -685,23 +696,26 @@ git-dojo 𝚿 cat .git/config                                                   
 (...)
 ```
 ]
----
-class:
-background-image: url(background.png)
-
-.right-column[
-### branch erzeugen
-### branches anzeigen
-]
-
 
 ---
 class:
 background-image: url(background.png)
 
 .right-column[
-### *checkout* lokalen tracking branch
+
 ### *checkout* entfernten branch
+
+```bash
+git-dojo 𝚿 git checkout -b Bug1 origin/Bug1             (b:master)
+Switched to branch 'Bug1'
+Your branch is up-to-date with 'origin/Bug1'.
+```
+
+### *checkout* lokalen tracking branch
+
+```bash
+git-dojo 𝚿 git checkout Bug1             (b:master)
+```
 ]
 
 ---
@@ -805,7 +819,7 @@ background-image: url(img/08_2_collaboration.png)
 
 ---
 class:
-background-image: url(background.png)
+background-image: url(img/s8_push.png)
 .right-column[
 ### Alice führt einen *push* aus
 
@@ -829,7 +843,7 @@ background-image: url(img/08_3_collaboration.png)
 
 ---
 class:
-background-image: url(background.png)
+background-image: url(img/s8_pull.png)
 .right-column[
 ### Bob führt einen *pull* aus
 
@@ -850,38 +864,37 @@ Fast-forward
 ---
 class: top, center
 background-image: url(img/08_4_collaboration.png)
-.right-column[
+
 ## Alice will Bob's Änderungen haben
-]
 
 ---
 class: top, center
 background-image: url(img/08_5_collaboration.png)
-.right-column[
+
 ## Vollständig synchronisiert
-]
 
 ---
 class:
-background-image: url(img/background.png)
+background-image: url(background.png)
 .right-column[
 
 ### Fazit
 
-1. Standard workflow zum Arbeiten mit Remote-Repositories
+In diesem Abschnitt haben wir:
 
-2. Änderungen zum Remote *pushen*
+1. den Standard Workflow zum Arbeiten mit Remote-Repositories verwendet
 
-3. Änderungen vom Remote *pullen* 
+2. änderungen zum Remote *gepusht*
+
+3. änderungen vom Remote *gepullt*
 
 Diese Arbeitsweise lässt sich mit vielen Entwicklern gut umsetzen.
-
-Es kommt aber immer wieder dazu, dass Mehrere an einer Datei Änderungen vorgenommen haben.
 ]
 
 ---
 class: center, middle
 background-image: url(background.png)
+
 ## merging
 
 ---
@@ -908,7 +921,7 @@ class:
 background-image: url(img/07_merging_FF.png)
 
 .right-column[
-### merge mit Fast Forward
+### merge - 'Fast Forward'
 
 Branch **master** auschecken:
 
@@ -931,7 +944,7 @@ class:
 background-image: url(img/07_merging_nFF.png)
 
 .right-column[
-### merge non Fast Forward
+### merge - 'non Fast Forward'
 
 Branch **master** auschecken:
 
@@ -950,6 +963,12 @@ git-dojo 𝚿 git merge Bug1 --no-ff                      (b:master)
 
 Man erhällt einen Merge commit, der auf zwei *parents* zeigt.
 ]
+
+---
+class: center, middle
+background-image: url(background.png)
+
+## merging - Konflikte beheben
 
 ---
 class:
@@ -976,7 +995,7 @@ background-image: url(background.png)
 
 ### Vorbereitung
 
-**Entwickler A**
+**Alice**
 
 *commit* und *push* mit seine Änderungen
 
@@ -1005,9 +1024,9 @@ background-image: url(background.png)
 
 ### Vorbereitung
 
-**Entwickler B**
+**Bob**
 
-Tut das selbe wie Entwickler A...
+Tut das selbe wie Alice...
 
 ```bash
 git-dojo2 𝚿 git add TestA.txt                                            (b:master∂)
@@ -1024,7 +1043,7 @@ background-image: url(background.png)
 .example_page[
 ### OhOh... merge conflict :-(
 
-Weil **Entwickler B** gewissenhaft ist, führt er vor dem *push* einen *pull* aus.
+Weil **Bob** gewissenhaft ist, führt er vor dem *push* einen *pull* aus.
 
 ```bash
 git-dojo2 𝚿 git pull                                                      (b:master)
@@ -1188,6 +1207,28 @@ background-image: url(background.png)
 
 .example_page[
 
+### ssh Benutzen
+
+**Public - Private Schlüsselpaar erzeugen**
+
+```bash
+  » ssh-keygen -t rsa
+```
+
+Bei verwenden der git Befehle in folgender Form:
+```bash
+  » git clone git@xyz.com:REPO.git
+```
+
+Wird automatisch ssh-Verschlüsselung eingesetzt um den Transport ab zu sichern
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
 ### Sieben Regeln für gute *commit*-Nachrichten
 
 1. Trennen von *subject* und *body*  mit einer leeren Zeile
@@ -1261,13 +1302,80 @@ Further paragraphs come after blank lines.
 
 [Quelle](http://chris.beams.io/posts/git-commit/)
 ]
+
 ---
 class:
 background-image: url(background.png)
 
 .right-column[
 ### *stash* benutzen
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
 ### *commits* sauber halten
+
+Unabsichtig zu git hinzugefügte Dateien sind ärgerlich.
+
+Daher sollte jeder *commit* gewissenhaft durchgeführt werden:
+
+1. Mit *git status* prüfen welche Änderungen vorgenommen wurden
+
+2. **Explizit** mit ```git add <Datei_1> .. <Datei_N> ``` arbeiten
+
+3. Prüfen ob nur das in der *Staging Area* ist, was im *commit* landen soll
+
+4. *commit* durchführen
+
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### *commits* sauber halten
+
+Wenn eine Datei zur *Stating Area* hinzugefügt wurde, die dort nicht hin soll, kann man sie mit:
+
+```bash
+  » git rm <Datei>
+```
+
+entfernt werden.
+
+Will man den gesamten ```git add```-Vorgang zurück setzen kann:
+
+```bash
+  » git reset
+```
+
+verwendet werden.
+
+]
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### *commits* sauber halten
+
+Um eine Datei vollständig aus dem Repository zu nehmen, kann der Befehl:
+
+```bash
+  » git filter-branch
+```
+
+verwendet werden.
+
+Das ist ein sehr starker Eingriff in die Struktur des Repositories.
+
+Nur verwenden wenn man unbedingt muss!
 ]
 
 ---
@@ -1277,8 +1385,19 @@ background-image: url(background.png)
 .right-column[
 ### Zuerst *pullen*/ *mergen*
 
+Wenn man an einem branch arbeitet, in dem andere Entwckler ihre Arbeit commiten, sollte man vor einem *commit* die Änderungen holen.
+
 ### Anschließend *commit*
+
+Man erhält einen *merge commit* vor dem *commit* der eigenen Arbeit.
+
 ]
+
+---
+class: top, center
+background-image: url(img/00_1_misc.png)
+
+### Pull first vs. Other
 
 ---
 class: center, middle
