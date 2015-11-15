@@ -277,13 +277,8 @@ git-dojo 𝚿 cat .git/config                              (b:master)
 [remote "origin"]
         url = git@github.com:cmg-dev/git-dojo
         fetch = +refs/heads/*:refs/remotes/origin/*
-# Diese benötigen wir später
-#[branch "master"]
-#        remote = origin
-#        merge = refs/heads/master
-#[branch "Bug1"]
-#        remote = origin
-#        merge = refs/heads/Bug1
+
+# Später stehen hier weitere Einträge
 ```
 ]
 
@@ -328,7 +323,7 @@ background-image: url(background.png)
 
 .example_page[
 
-**1. Ein paar Dateien Anlegen**
+**1. Ein paar Dateien anlegen**
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
