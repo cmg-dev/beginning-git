@@ -53,7 +53,24 @@ background-image: url(img/01_design_goals.png)
 class: middle, center
 background-image: url(background.png)
 
+## Was ist git?
+
+---
+class: middle, center
+background-image: url(background.png)
+
 ## git ist ein Dateisystem!
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
+### Warum das?
+
+* git denkt in **Snapshots**
+* Andere in **Differences**
+]
 
 ---
 class:
@@ -71,7 +88,7 @@ background-image: url(background.png)
 
 * eine Prüfsumme wird für jedes Objekt gebildet
 * git hat eine intrinsische, rückwärtsgerichtete Integritätsprüfung!
-* schwierig Daten zu manipulieren
+* das macht schwierig Daten zu manipulieren
 ]
 
 ---
@@ -81,7 +98,7 @@ background-image: url(img/02_file_states.png)
 .right-column[
 ### Drei Zustände, drei Sektionen
 
-Eine Datei hat einen der folgenden Zustände:
+Eine Datei hat **immer** einen der folgenden Zustände:
 
 1. committed -> Sicher in Datenbank
 
@@ -99,11 +116,11 @@ background-image: url(img/03_dirs.png)
 ### Sektionen
 1. Arbeitsverzeichnis
 
-  *checkout* einer Version des Projekts
+  Ist *checkout* einer Version des Projekts.
 
 1. Staging Area
 
-  Datei wird beim nächsten *commit* eingeschlossen.
+  Sammelt Dateien, die beim nächsten *commit* übernommen werden.
 
 1. .git Verzeichnis (Repository)
 
@@ -201,20 +218,55 @@ background-image: url(background.png)
 
 .example_page[
 
-Ein paar Dateien Anlegen
+**1. Ein paar Dateien Anlegen**
+
+```bash
+git-dojo 𝚿 ls                                                        (b:master∂)
+TestA.txt TestB.txt TestC.txt
+```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+**1. Ein paar Dateien Anlegen**
 
 ```bash
 git-dojo 𝚿 ls                                                        (b:master∂)
 TestA.txt TestB.txt TestC.txt
 ```
 
-Commit vorbereiten: Zur *Staging Area* hinzufügen
+**2. Commit vorbereiten: Zur *Staging Area* hinzufügen**
 
 ```bash
 git-dojo 𝚿 git add                                                   (b:master∂)
 ```
 
-Commit schreiben und Dateien von git verwalten lassen
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+**1. Ein paar Dateien Anlegen**
+
+```bash
+git-dojo 𝚿 ls                                                        (b:master∂)
+TestA.txt TestB.txt TestC.txt
+```
+
+**2. Commit vorbereiten: Zur *Staging Area* hinzufügen**
+
+```bash
+git-dojo 𝚿 git add                                                   (b:master∂)
+```
+
+** 3. Commit schreiben und Dateien von git verwalten lassen**
 
 ```bash
 git-dojo 𝚿 git commit -m "Sinnvolle Nachricht"                        (b:master)
@@ -228,16 +280,26 @@ git-dojo 𝚿 git commit -m "Sinnvolle Nachricht"                        (b:mast
 
 ---
 class:
-background-image: url(background.png)
+background-image: url(img/05_example1.png)
 
-.example_page[
+.right-column[
+### Was haben wir bisher getan?
+]
 
-Ein paar Dateien Anlegen
+---
+class:
+background-image: url(img/05_example1.png)
 
-```bash
-git-dojo 𝚿 ls                                                        (b:master∂)
-TestA.txt TestB.txt TestC.txt
-```
+.right-column[
+### Was haben wir bisher getan?
+
+**Explizit**
+
+* drei Dateien angelegt
+
+* diese *gestaged*
+
+* einen *commit* erstellt
 ]
 
 ---
@@ -263,7 +325,6 @@ background-image: url(img/05_example1.png)
 git-dojo 𝚿 git branch                                    (b:master)
   master
 ```
-
 ]
 
 ---
@@ -272,6 +333,30 @@ background-image: url(img/05_1_example1.png)
 
 .right-column[
 ### Was enthält der master
+
+Der **master** enthält den Hash des Commits auf den er zeigt.
+
+]
+
+---
+class:
+background-image: url(img/05_1_example1.png)
+
+.right-column[
+### Exkurs Hash
+
+git generiert zu jeden Objekt ein SHA-1 Hash.
+
+Referenzierungen werden nur über diesen Hash gemacht.
+
+```bash
+git-dojo 𝚿 cat .git/refs/heads/master                    (b:master)
+bac26a6fd948d6565b36c6205fbb08a3b420dd57
+```
+
+Es ist ausreichend die ersten 7 Stellen des Hash zu verwenden!
+
+Das ist die Standardeinstellung und ~30k Commits können so eindeutig identifiziert werden.
 ]
 
 ---
@@ -279,7 +364,9 @@ class:
 background-image: url(img/05_2_example1.png)
 
 .right-column[
-### Arbeiten -> Commiten -> repeat.
+### Modify -> Add ->  Commit -> repeat
+
+**Neue Änderungen ins Repository aufnehmen**
 
 ```bash
 git-dojo 𝚿 git commit -m"Mein 2. commit"                    (b:master∂)
@@ -290,6 +377,18 @@ git-dojo 𝚿 git commit -m"Commit 3 :-)"                      (b:master∂)
 [master ms226a5] Commit 3 :-)
  1 file changed, 1 insertions(+)
 ```
+]
+
+---
+class:
+background-image: url(img/05_2_example1.png)
+
+.right-column[
+### Modify -> Add ->  Commit -> repeat
+
+Ein *commit* zeigt immer auf seinen Vorgänger.
+
+git speichert so einen Baum zurück zum ersten *commit*.
 ]
 
 ---
@@ -305,32 +404,14 @@ Ein *commit* speichert im Wesentlichen die Informationen
 * den Zeitpunkt
 * die Nachricht
 * seinen *parent*
-
 ]
 
 ---
 class:
-background-image: url(img/00_commit_internals.png)
+background-image: url(img/05_3_example1.png)
 
 .right-column[
-### Wo sind die Dateien?
-
-Jeder *commit* hat eine *tree*. Genauer: jeder *commit* zeigt auf einen *tree*.
-
-Jeder *tree* zeigt wiederum auf *blobs*, Dateien unspezifizierten Formats.
-
-*blobs* werden in dem Ordner ```.git/objects/``` abgelegt
-
-```bash
-git-dojo 𝚿 ls -al .git/objects                                                 (b:master)
-total 0
-drwxr-xr-x  16 cmg  staff  544 13 Nov 11:17 .
-drwxr-xr-x  14 cmg  staff  476 13 Nov 15:58 ..
-drwxr-xr-x   4 cmg  staff  136 13 Nov 11:17 bh
-drwxr-xr-x   3 cmg  staff  102 12 Nov 23:29 rr
-drwxr-xr-x   3 cmg  staff  102 13 Nov 11:15 pl
-
-```
+### Woher weiß git in welchem Branch es sich befindet?
 ]
 
 ---
@@ -348,6 +429,43 @@ Zu finden unter:
 git-dojo 𝚿 cat .git/branch                              (b:master)
   ref: refs/heads/master
 ```
+]
+
+---
+class:
+background-image: url(img/00_commit_internals.png)
+
+.right-column[
+### Wo sind die Dateien?
+
+Jeder *commit* hat eine *tree*. Genauer: jeder *commit* zeigt auf einen *tree*.
+
+Jeder *tree* zeigt wiederum auf *blobs*.
+
+*blobs* werden in dem Ordner ```.git/objects/``` abgelegt
+
+```bash
+git-dojo 𝚿 ls -al .git/objects                                                 (b:master)
+total 0
+drwxr-xr-x  16 cmg  staff  544 13 Nov 11:17 .
+drwxr-xr-x  14 cmg  staff  476 13 Nov 15:58 ..
+drwxr-xr-x   4 cmg  staff  136 13 Nov 11:17 bh
+drwxr-xr-x   3 cmg  staff  102 12 Nov 23:29 rr
+drwxr-xr-x   3 cmg  staff  102 13 Nov 11:15 pl
+
+```
+]
+
+---
+class:
+background-image: url(img/00_1_commit_internals.png)
+
+.right-column[
+### Wo sind die Dateien?
+
+So sieht es bei jeden beliebigen Commit aus.
+
+Aus Gründen der Übersicht, werden die *tree*-Objekte nicht dargestellt.
 ]
 
 ---
@@ -380,7 +498,7 @@ background-image: url(background.png)
 Es gibt zwei Arten von branches:
 
 1. Lokale
-  
+
   Zeigen auf einen commit im lokalen Repository.
 
 2. Entfernte
@@ -613,29 +731,152 @@ background-image: url(background.png)
 
 ---
 class:
-background-image: url(img/07_collaboration.png)
+background-image: url(img/08_collaboration.png)
 .right-column[
 ### Alice und Bob
 
-Zwei Entwickler arbeiten an einem gemeinsamen Projekt.
+Zwei Entwickler arbeiten nun an gemeinsamer Codebasis.
+
+Beide *clonen* das Basisrepository:
+
+**Alice**
+
+```bash
+src 𝚿 git clone git@github.com:cmg-dev/git-dojo
+```
+
+**Bob**
+
+```bash
+src 𝚿 git clone git@github.com:cmg-dev/git-dojo
+```
+]
+
+---
+class:
+background-image: url(img/08_collaboration.png)
+.right-column[
+### Alice und Bob
+
+Zwei Entwickler arbeiten nun an gemeinsamer Codebasis.
+
+**Alice**
+
+```bash
+src 𝚿 git clone git@github.com:cmg-dev/git-dojo
+Cloning into 'git-dojo'...
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 3 (delta 1), reused 2 (delta 1), pack-reused 0
+Receiving objects: 100% (3/3), 4.04 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (1/1), done.
+Checking connectivity... done.
+```
+]
+
+---
+class:
+background-image: url(img/08_1_collaboration.png)
+.right-column[
+### Alice und Bob
 
 **Alice** hat sich um den Bugfix gekümmert
 
+Drei *commits* hat Alice gebraucht.
+
 **Bob** hat eine GUI implementiert
 
+Bob hat die Änderungen für die GUI in einem *commit* zusammengefasst.
+Aber sein *commit* ist nach Alice Arbeit entstanden.
+
 ]
+
+---
+class: middle, center
+background-image: url(background.png)
+
+## Zusammenführen
+
+---
+class: top, center
+background-image: url(img/08_2_collaboration.png)
+
+### Alice führt einen *push* aus
+
 ---
 class:
-background-image: url(img/07_1_collaboration.png)
+background-image: url(background.png)
+.right-column[
+### Alice führt einen *push* aus
+
+```bash
+git-dojo 𝚿 git push                                     (b:master)
+
+Counting objects: 5, done.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 167.98 KiB | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+To git@www.github.com:cmg-dev/git-dojo
+   4tuihw90...f41aa9d  master -> master push
+```
+]
+
+---
+class: top, center
+background-image: url(img/08_3_collaboration.png)
+
+### Bob führt einen *pull* aus
+
+---
+class:
+background-image: url(background.png)
 .right-column[
 ### Bob führt einen *pull* aus
 
 ```bash
-git-dojo 𝚿 git pull git@github.com:alice/git-dojo.git   (b:master)
+git-dojo 𝚿 git pull                                     (b:master)
+
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 5 (delta 2), reused 3 (delta 2), pack-reused 0
+Unpacking objects: 100% (5/5), done.
+From www.github.com:cmg-dev/beginning-git
+   f41aa9d..38f0c16  master     -> origin/master
+Updating f41aa9d..38f0c16
+Fast-forward
 ```
+]
 
-Und erhält die Änderungen, die Alice gemacht hat.
+---
+class: top, center
+background-image: url(img/08_4_collaboration.png)
+.right-column[
+## Alice will Bob's Änderungen haben
+]
 
+---
+class: top, center
+background-image: url(img/08_5_collaboration.png)
+.right-column[
+## Vollständig synchronisiert
+]
+
+---
+class:
+background-image: url(img/background.png)
+.right-column[
+
+### Fazit
+
+1. Standard workflow zum Arbeiten mit Remote-Repositories
+
+2. Änderungen zum Remote *pushen*
+
+3. Änderungen vom Remote *pullen* 
+
+Diese Arbeitsweise lässt sich mit vielen Entwicklern gut umsetzen.
+
+Es kommt aber immer wieder dazu, dass Mehrere an einer Datei Änderungen vorgenommen haben.
 ]
 
 ---
@@ -719,7 +960,7 @@ background-image: url(background.png)
 
 Arbeiten mehrere Personen an ein und demselben Quellcode, dann kommt es früher oder später zu Konflikten.
 
-git stellt Leistungsfähige Mechanismen zur Lösung dieser Probleme bereit.
+git stellt leistungsfähige Mechanismen zur Lösung dieser Probleme bereit.
 
 Also: **Keine Angst vor Konflikten!**
 
@@ -941,6 +1182,85 @@ background-image: url(background.png)
 
 ## Best Practice
 
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### Sieben Regeln für gute *commit*-Nachrichten
+
+1. Trennen von *subject* und *body*  mit einer leeren Zeile
+
+1. Auf 50 Zeichen pro Zeile beschränken
+
+1. *Subject*mit Großbuchstaben beginnen
+
+1. *Subject*Zeile nicht mit einen Punkt beenden
+
+1. Verwenden des Imperativs in *subject*
+
+1. Zeilenumbruch bei 72 Zeichen im *body*
+
+1. Im *body* Was und Warum erklären nicht Wie
+
+[Quelle](http://chris.beams.io/posts/git-commit/)
+]
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### Sieben Regeln für gute *commit*-Nachrichten - Ein Beispiel
+```
+Summarize changes in around 50 characters or less
+
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. In some contexts, the first line is treated as the
+subject of the commit and the rest of the text as the body. The
+blank line separating the summary from the body is critical (unless
+you omit the body entirely); various tools like `log`, `shortlog`
+and `rebase` can get confused if you run the two together.
+
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how (the code explains that).
+Are there side effects or other unintuitive consequenses of this
+change? Here's the place to explain them.
+
+(...)
+```
+
+[Quelle](http://chris.beams.io/posts/git-commit/)
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
+
+### Sieben Regeln für gute *commit*-Nachrichten - Ein Beispiel
+```
+(...)
+
+Further paragraphs come after blank lines.
+
+ - Bullet points are okay, too
+
+  - Typically a hyphen or asterisk is used for the bullet, preceded
+     by a single space, with blank lines in between, but conventions
+        vary here
+
+        If you use an issue tracker, put references to them at the bottom,
+        like this:
+
+        Resolves: #123
+        See also: #456, #789
+```
+
+[Quelle](http://chris.beams.io/posts/git-commit/)
+]
 ---
 class:
 background-image: url(background.png)
