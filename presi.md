@@ -1643,3 +1643,12 @@ beginning-git 𝚿 cat .gitignore                                             (b
  *.png
 ```
 ]
+---
+
+
+class:
+background-image: url(background.png)
+
+.example_page[
+### git Tags
+]
