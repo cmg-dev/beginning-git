@@ -1568,6 +1568,33 @@ class:
 background-image: url(background.png)
 
 .example_page[
+### Delta Kompression
+```bash
+# 1.
+root@mindassist:/etc# df -h | grep G
+5.8G    .
+
+# 2.
+root@mindassist:/etc# git gc
+Counting objects: 1245345, done.
+Delta compression using up to 12 threads.
+Compressing objects: 100% (1244700/1244700), done.
+Writing objects: 100% (1245345/1245345), done.
+Total 1245345 (delta 993718), reused 0 (delta 0)
+Removing duplicate objects: 100% (256/256), done.
+Checking connectivity: 1245345, done.
+
+# 3.
+root@mindassist:/etc# df -h
+132M    .
+```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.example_page[
 ### git rebase
 
 Restrukturierung der *commit*-Historie.
