@@ -1546,13 +1546,14 @@ background-image: url(background.png)
 ## Spezielle Themen
 
 ---
-class: center, middle
+class:
 background-image: url(background.png)
 
 .example_page[
 ## Line Endings
 
-Es wird empfohlen folgenden Befehl nach der Installtion von git aus zu führen:
+
+Auf Windows Systemen sollte folgenden Befehl nach der Installtion von git ausgeführt werden:
 
 ```bash
   𝚿 git config --global core.autocrlf true
@@ -1577,7 +1578,7 @@ git führt bei der Speicherung der Daten eine [Delta Compression](https://gist.g
 
 Dies stellt eine sehr effiziente Methode der Komprimierung für textbasierte Dokumente dar.
 
-Auch 'binäre'-Objekte (z.B. .docx) können so gespeichert werden.
+Auch 'binäre'-Objekte (z.B. .docx) können so abgespeichert werden.
 ]
 
 ---
@@ -1586,6 +1587,7 @@ background-image: url(background.png)
 
 .example_page[
 ### Delta Kompression
+
 ```bash
 # 1.
 root@mindassist:/etc# df -h | grep G
