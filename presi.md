@@ -14,7 +14,6 @@ class:
 background-image: url(background.png)
 
 .right-column[
-
 ### Woher kommt git?
 ]
 
@@ -23,7 +22,6 @@ class:
 background-image: url(background.png)
 
 .right-column[
-
 ### Woher kommt git?
 
 * Ursprung in Linux Kernel-Community
@@ -221,6 +219,7 @@ Für eine Übersicht über die sehr umfangreichen Befehle, die git kennt ist so 
 
 ---
 background-image: url(img/s0_start.png)
+
 .right-column[
 ### Anfang
 
@@ -234,6 +233,7 @@ Erstellt einen leeren Ordner zum Repository.
 
 ---
 background-image: url(img/s0_start.png)
+
 .right-column[
 ### Anfang
 
@@ -260,7 +260,6 @@ Alles spielt sich im *.git*-Ordner ab.
 background-image: url(img/s0_start.png)
 
 .right-column[
-
 ### Anfang
 
 Eine wichtige Datei ist die *config*-Datei. Alle Einstellungen des Repositories werden hier gespeichert:
@@ -602,7 +601,6 @@ class:
 background-image: url(img/06_1_branching.png)
 
 .right-column[
-
 ### Arbeiten mit lokalen branches
 
 **Branch auschecken**
@@ -631,7 +629,6 @@ class:
 background-image: url(img/06_2_branching.png)
 
 .right-column[
-
 ### Arbeiten mit lokalen branches
 
 **Arbeit finalisieren**
@@ -648,7 +645,6 @@ class:
 background-image: url(img/06_4_branching.png)
 
 .right-column[
-
 ### Von Bug1 nach master wechseln
 
 ```bash
@@ -665,7 +661,6 @@ class:
 background-image: url(img/06_3_branching.png)
 
 .right-column[
-
 ### Von master nach Bug1 wechseln
 
 ```bash
@@ -682,7 +677,6 @@ class:
 background-image: url(img/07_merging_FF.png)
 
 .right-column[
-
 ### Zusammenführen von master und Bug1
 
 ```bash
@@ -712,7 +706,6 @@ class:
 background-image: url(img/09_remote_branch.png)
 
 .right-column[
-
 ### remote branches anzeigen
 
 ```bash
@@ -729,8 +722,8 @@ class:
 background-image: url(img/09_1_remote_branch.png)
 
 .right-column[
-
 ### Lokalen Branch *pushen*
+
 **Lokalen Branch einem *remote* bekannt machen**
 
 ```bash
@@ -749,8 +742,7 @@ class:
 background-image: url(img/09_1_remote_branch.png)
 
 .right-column[
-
-### remote tracking branches
+### Remote Tracking Branches
 
 Branches mit sog. *Upstream Tracking* haben eine direkte Beziehung mit einem entfernten Branch.
 
@@ -774,7 +766,6 @@ class:
 background-image: url(background.png)
 
 .right-column[
-
 ### *checkout* entfernten Branch
 
 ```bash
@@ -818,6 +809,7 @@ background-image: url(background.png)
 ---
 class:
 background-image: url(img/08_collaboration.png)
+
 .right-column[
 ### Alice und Bob
 
@@ -841,6 +833,7 @@ src 𝚿 git clone git@github.com:cmg-dev/git-dojo
 ---
 class:
 background-image: url(img/08_collaboration.png)
+
 .right-column[
 ### Alice und Bob
 
@@ -865,7 +858,6 @@ class:
 background-image: url(img/08_collaboration.png)
 
 .right-column[
-
 ### Alice und Bob
 
 **Was ist passiert?**
@@ -897,6 +889,7 @@ background-image: url(background.png)
 ---
 class:
 background-image: url(img/08_1_collaboration.png)
+
 .right-column[
 ### Alice und Bob
 
@@ -926,6 +919,7 @@ background-image: url(img/08_2_collaboration.png)
 ---
 class:
 background-image: url(img/s8_push.png)
+
 .right-column[
 ### Alice führt einen *push* aus
 
@@ -950,6 +944,7 @@ background-image: url(img/08_3_collaboration.png)
 ---
 class:
 background-image: url(img/s8_pull.png)
+
 .right-column[
 ### Bob führt einen *pull* aus
 
@@ -982,8 +977,8 @@ background-image: url(img/08_5_collaboration.png)
 ---
 class:
 background-image: url(background.png)
-.right-column[
 
+.right-column[
 ### Fazit
 
 In diesem Abschnitt haben wir:
