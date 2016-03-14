@@ -1549,6 +1549,28 @@ background-image: url(img/00_1_misc.png)
 class: center, middle
 background-image: url(background.png)
 ## Spezielle Themen
+
+---
+class: center, middle
+background-image: url(background.png)
+
+.example_page[
+## Line Endings
+
+Es wird empfohlen folgenden Befehl nach der Installtion von git aus zu führen:
+
+```bash
+  𝚿 git config --global core.autocrlf true
+```
+
+Das teilt git mit:
+
+1. Zeilenende nach Systemstandard Konvertieren
+2. Beim Push immer *LF*
+
+Somit ist die Interoperabilität zwischen verschiedenen Betribessystemen gegeben.
+]
+
 ---
 class:
 background-image: url(background.png)
