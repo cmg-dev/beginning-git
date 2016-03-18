@@ -1552,8 +1552,7 @@ background-image: url(background.png)
 .example_page[
 ## Line Endings
 
-
-Auf Windows Systemen sollte folgenden Befehl nach der Installtion von git ausgeführt werden:
+Auf Windows Systemen sollte folgenden Befehl nach der Installation von git ausgeführt werden:
 
 ```bash
   𝚿 git config --global core.autocrlf true
@@ -1564,7 +1563,7 @@ Das teilt git mit:
 1. Zeilenende nach Systemstandard Konvertieren
 2. Beim Push immer *LF*
 
-Somit ist die Interoperabilität zwischen verschiedenen Betribessystemen gegeben.
+Somit ist die Interoperabilität zwischen verschiedenen Betriebssystemen gegeben.
 ]
 
 ---
