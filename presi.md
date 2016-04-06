@@ -792,13 +792,29 @@ background-image: url(background.png)
 git-dojo 𝚿 git branch -D Bug1                           (b:master)
 Deleted branch Bug1 (was aec1cab).
 ```
+]
+
+---
+class:
+background-image: url(background.png)
+
+.right-column[
 ### Entfernten Branch löschen
+
+**Git < 1.7.0**
 
 ```bash
 git-dojo 𝚿 git push origin :Bug1                        (b:master)
 To git@github.com:cmg-dev/git-dojo
  - [deleted]         Bug1
 ```
+
+**Git > 1.7.0**
+```bash
+git-dojo 𝚿 git push origin --delete <branch>            (b:master)
+```
+
+Mehr Informationen gibt es [hier](http://stackoverflow.com/a/23961231).
 ]
 
 ---
