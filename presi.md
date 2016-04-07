@@ -1568,7 +1568,7 @@ background-image: url(background.png)
 .example_page[
 ## Line Endings
 
-Auf Windows Systemen sollte folgenden Befehl nach der Installation von git ausgeführt werden:
+Auf Windows Systemen sollte folgender Befehl nach der Installation von git ausgeführt werden:
 
 ```bash
   𝚿 git config --global core.autocrlf true
